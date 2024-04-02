@@ -120,6 +120,12 @@ class _AccountCreationPageState extends State<AccountCreationPage> {
   String _selectedHostel = ''; 
   String _selectedRole = '';
 
+  TextEditingController _studentPasswordController = TextEditingController();
+  TextEditingController _adminPasswordController = TextEditingController();
+  String? _studentPasswordErrorText;
+  String? _adminPasswordErrorText;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -386,6 +392,46 @@ class _AccountCreationPageState extends State<AccountCreationPage> {
                   );
                 }).toList(),
               ),
+            // Password input for Student account
+            if (_accountType == 'Student')
+              TextField(
+                controller: _studentPasswordController,
+                obscureText: true,
+                onChanged: (value) {
+                  // Check password constraints
+                  setState(() {
+                    if (value.length < 8) {
+                      _studentPasswordErrorText = 'Password must be at least 8 characters';
+                    } else {
+                      _studentPasswordErrorText = null;
+                    }
+                  });
+                },
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  errorText: _studentPasswordErrorText,
+                ),
+              ),
+            // Password input for Admin account
+            if (_accountType == 'Admin')
+              TextField(
+                controller: _adminPasswordController,
+                obscureText: true,
+                onChanged: (value) {
+                  // Check password constraints
+                  setState(() {
+                    if (value.length < 8) {
+                      _adminPasswordErrorText = 'Password must be at least 8 characters';
+                    } else {
+                      _adminPasswordErrorText = null;
+                    }
+                  });
+                },
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  errorText: _adminPasswordErrorText,
+                ),
+              ),
               SizedBox(height: 150.0),
               ElevatedButton(
                 onPressed: () {
@@ -398,12 +444,16 @@ class _AccountCreationPageState extends State<AccountCreationPage> {
                         _courseController.text.isNotEmpty &&
                         _selectedHostel.isNotEmpty &&
                         _studentMobileController.text.isNotEmpty &&
-                        _studentMobileController.text.length == 10;
+                        _studentMobileController.text.length == 10 &&
+                        _studentPasswordController.text.isNotEmpty &&
+                        _studentPasswordController.text.length >= 8;
                     bool adminDetailsFilled = _accountType == 'Admin' &&
                         _adminNameController.text.isNotEmpty &&
                         _adminMobileController.text.isNotEmpty &&
                         _adminMobileController.text.length == 10 &&
-                        _selectedRole.isNotEmpty;
+                        _selectedRole.isNotEmpty &&
+                        _adminPasswordController.text.isNotEmpty &&
+                        _adminPasswordController.text.length >= 8;
                     // Ensure admin role is assigned
                     if (_accountType == 'Student') {
                       if (_studentMobileController.text.isEmpty || _studentMobileController.text.length != 10) {
