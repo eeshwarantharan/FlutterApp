@@ -501,7 +501,7 @@ class SuccessPage extends StatelessWidget {
           DecoratedBox(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/green_background.png'),
+                image: AssetImage('assets/pale_red_image.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -517,7 +517,7 @@ class SuccessPage extends StatelessWidget {
                   ).animate(animation),
                   child: Icon(
                     Icons.check_circle,
-                    color: Colors.green,
+                    color: Color.fromARGB(255, 19, 117, 45),
                     size: 100.0,
                   ),
                 ),
@@ -525,7 +525,7 @@ class SuccessPage extends StatelessWidget {
                 FadeTransition(
                   opacity: animation,
                   child: Text(
-                    'Account Successfully Created',
+                    'Account Successfully Created !',
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -557,59 +557,6 @@ class SuccessPage extends StatelessWidget {
     );
   }
 }
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          DecoratedBox(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/green_background.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(
-                  Icons.check_circle,
-                  color: Colors.green,
-                  size: 100.0,
-                ),
-                SizedBox(height: 20.0),
-                Text(
-                  'Account Successfully Created',
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 50.0),
-                ElevatedButton(
-                  onPressed: () {
-                    // Navigate to login page
-                    Navigator.pushReplacementNamed(context, '/login');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).primaryColor, // Dark green button color
-                  ),
-                  child: Text(
-                    'Go to Login Page',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
 
 
 class WelcomePage extends StatelessWidget {
