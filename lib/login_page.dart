@@ -46,7 +46,32 @@ class LoginPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     // Implement login logic here
-                    Navigator.pushReplacementNamed(context, '/home');
+                    // For demonstration, assume login is successful
+                    // Check the credentials and navigate to the appropriate screen
+                    String mobileNumber = ''; // Get the mobile number from the TextField
+                    String password = ''; // Get the password from the TextField
+                    if (mobileNumber == '9171907755' && password == 'student') {
+                      // Navigate to student screen
+                      Navigator.pushReplacementNamed(context, '/student');
+                    } else if (mobileNumber == '9944270204' && password == 'admin') {
+                      // Navigate to admin screen
+                      Navigator.pushReplacementNamed(context, '/admin');
+                    } else {
+                      // Show an error message for invalid credentials
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text('Error'),
+                          content: Text('Invalid credentials'),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: Text('OK'),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15), backgroundColor: Color.fromARGB(237, 117, 91, 214),
@@ -58,6 +83,36 @@ class LoginPage extends StatelessWidget {
                     'Submit',
                     style: TextStyle(
                       color: Colors.white,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                TextButton(
+                  onPressed: () {
+                    // Navigate to admin login page
+                    Navigator.pushReplacementNamed(context, '/student');
+                  },
+                  child: Text(
+                    'Login as Student',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                TextButton(
+                  onPressed: () {
+                    // Navigate to admin login page
+                    //Navigator.pushReplacementNamed(context, '/admin');
+                  },
+                  child: Text(
+                    'Login as Admin',
+                    style: TextStyle(
+                      color: Colors.blue,
                       fontSize: 15.0,
                       fontWeight: FontWeight.normal,
                     ),

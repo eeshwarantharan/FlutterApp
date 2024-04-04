@@ -291,7 +291,7 @@ class _AccountCreationPageState extends State<AccountCreationPage> {
                   ),
                 ),
               SizedBox(height: 10.0),
-              if (_accountType == 'Admin') SizedBox(child: new Text("Role of Admin"),height: 20.0,width: double.infinity),
+              if (_accountType == 'Admin') SizedBox(height: 20.0,width: double.infinity, child: Text("Role of Admin")),
               if (_accountType == 'Admin')
                 Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
